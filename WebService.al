@@ -1,4 +1,4 @@
-codeunit 50102 WebCodeUnit
+codeunit 50102 WebService
 {
     var
         client: HttpClient;
@@ -16,6 +16,43 @@ codeunit 50102 WebCodeUnit
     end;
 
 
+        procedure NewItem(Item: Record Item) JsonPayload: JsonObject
+    var
+        Response: HttpResponseMessage;
+        Request: HttpRequestMessage;
+    begin
+        MakeHttpRequest('POST', 'https://localhost/wordpress/wp-json/wc/v3/products', '', Request);
+
+        if Client.Send(Request, Response) then begin
+            JsonPayload := GetPayloadAsJsonObject(Response);
+        end;
+    end;
+
+    procedure ModifyItem(Item: Record Item) JsonPayload: JsonObject
+    var
+        Response: HttpResponseMessage;
+        Request: HttpRequestMessage;
+        Payload: Text;
+        Uri: Text;
+    begin
+        // proof of concept, edit name
+        JsonPayload.Add('name', Item.Description);
+        JsonPayload.Add('regular_price', Format(Item."Unit Price"));
+        JsonPayload.WriteTo(Payload);
+
+        Uri := 'https://localhost/wordpress/wp-json/wc/v3/products/' + Format(Item.WooComId);
+
+        MakeHttpRequest('PUT', Uri, Payload, Request);
+
+        if Client.Send(Request, Response) then begin
+            JsonPayload := GetPayloadAsJsonObject(Response);
+        end;
+    end;
+
+
+
+
+
     //using http://dankinsella.blog/http-basic-authentication-with-the-al-httpclient/ 
     local procedure CreateAuth() AuthString: Text
     var
@@ -27,7 +64,7 @@ codeunit 50102 WebCodeUnit
     end;
 
     //using https://docs.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/httpcontent/httpcontent-data-type
-    procedure MakeRequest(uri: Text; payload: Text; request: HttpRequestMessage)
+    procedure MakeHttpRequest(Method: Text; Uri: Text; payload: Text; request: HttpRequestMessage)
     var
         contentHeaders: HttpHeaders;
         content: HttpContent;
@@ -45,7 +82,16 @@ codeunit 50102 WebCodeUnit
         // the content associated with the request message
         request.Content := content;
 
-        request.SetRequestUri(uri);
-        request.Method := 'POST';
+        request.SetRequestUri(Uri);
+        request.Method := Method;
     end;
+
+    local procedure GetPayloadAsJsonObject(Response: HttpResponseMessage) JsonPayload: JsonObject
+    var
+        Payload: Text;
+    begin
+        Response.Content.ReadAs(Payload);
+        JsonPayload.ReadFrom(Payload);
+    end;
+
 }
