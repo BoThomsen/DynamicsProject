@@ -1,21 +1,20 @@
-page 50111 WooComPage
+page 50111 "WooComPage"
 {
     PageType = Card;
     ApplicationArea = All;
     UsageCategory = Administration;
     
-    
     layout
     {
         area(Content)
         {
-            group(GroupName)
+            
+            group(Chart)
             {
-                field(Name; CompanyName)
-                {
-                    ApplicationArea = All;
-                    
-                }
+            part(MostSoldPro; MostSoldProductsChart)
+            {
+                ApplicationArea = all;
+            }
             }
         }
     }

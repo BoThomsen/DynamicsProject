@@ -6,6 +6,13 @@ tableextension 50103 ItemExt extends Item
         {
             DataClassification = ToBeClassified;
         }
+
+        field(151; OnlineOrPhysical; Option)
+        {
+
+            DataClassification = ToBeClassified;
+            OptionMembers = Online,Physical,Both;
+        }
     }
 
     trigger OnAfterInsert()
@@ -19,10 +26,11 @@ tableextension 50103 ItemExt extends Item
 
         ResJson.Get('id', JsonTokenWooComId);
         Rec.WooComId := JsonTokenWooComId.AsValue().AsInteger();
+
+        //FraudReport.Run();
+
+
     end;
-
-
-
 
     trigger OnBeforeModify()
     var
@@ -37,4 +45,5 @@ tableextension 50103 ItemExt extends Item
 
     var
         WebService: Codeunit WebService;
+        FraudReport: Codeunit FraudReport;
 }

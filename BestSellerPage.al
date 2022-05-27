@@ -1,38 +1,29 @@
 page 50112 BestSellerPage
 {
     PageType = Card;
-    ApplicationArea = All;
-    UsageCategory = Administration;
-    //SourceTable = TableName;
+    Extensible = false;
+    Editable = false;
+
     
     layout
     {
         area(Content)
         {
-            group(GroupName)
+            group(BestSeller)
             {
-                field(Name; CompanyName)
+            
+                Caption = 'Best Sellers in Electronics';
+                usercontrol(AmazonBestSeller; "Microsoft.Dynamics.Nav.Client.WebPageViewer")
                 {
                     ApplicationArea = All;
-                    
+
+                    trigger ControlAddInReady(callbackUrl: Text)
+                    begin
+                        CurrPage.AmazonBestSeller.Navigate('https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_nav_0&output=embed');
+                    end;
+
                 }
-            }
-        }
-    }
-    
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-                ApplicationArea = All;
-                
-                trigger OnAction()
-                begin
-                    
-                end;
-            }
+          }
         }
     }
     

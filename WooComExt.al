@@ -5,15 +5,17 @@ pageextension 50110 WooComExt extends "Order Processor Role Center"
         // Add changes to page layout here
     }
 
+    
+
     actions
     {
-        addlast(Action76)
+        addfirst(Action76)
         {
 
             action("WooCommerce")
             {
                 ApplicationArea = All;
-                RunObject = page "Student Chart Setup Page";
+                RunObject = page "WooComPage";
 
             }
 

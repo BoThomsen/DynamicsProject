@@ -1,10 +1,10 @@
-page 50116 "Student Chart Setup Page"
+page 50116 "Product Chart Setup Page"
 {
-    Caption = 'Student Chart Setup Page';
+    Caption = 'Product Chart Setup Page';
     PageType = StandardDialog;
     ApplicationArea = All;
     UsageCategory = Administration;
-    SourceTable = "Student Chart Setup Table";
+    SourceTable = "Product Chart Setup Table";
     DeleteAllowed = false;
     InsertAllowed = false;
 
@@ -21,7 +21,7 @@ page 50116 "Student Chart Setup Page"
 
                 }
 
-                field(Grade; Grade)
+                field("Most Sold Products"; "Most Sold Products")
                 {
                     ApplicationArea = All;
 

@@ -1,20 +1,20 @@
-table 50115 "Student Chart Setup Table"
+table 50115 "Product Chart Setup Table"
 {
     DataClassification = ToBeClassified;
-    Caption = 'Student Chart Setup Table';
+    Caption = 'Product Chart Setup Table';
 
     fields
     {
         field(1; "User ID"; Text[132])
         {
             Caption = 'User ID';
-            DataClassification = ToBeClassified;
+            DataClassification = EndUserIdentifiableInformation;
 
         }
         field(10; "Chart type"; Option)
         {
             Caption = 'Chart type';
-            DataClassification = ToBeClassified;
+            DataClassification = SystemMetadata;
             OptionMembers = Point,,Bubble,Line,,StepLine,,,,,StackedColumn,StackedColumn100,Area;
             OptionCaption = 'Point,, Bubble, Line,, StepLine,,,,, StackedColumn,StackedColumn100, Area';
 
@@ -22,11 +22,11 @@ table 50115 "Student Chart Setup Table"
             //OptionMembers = "Stacked Area","Stacked Area (%)","Stacked Column","Stacked Column (%)";
 
         }
-        field(20; "Grade"; Option)
+        field(20; "Most Sold Products"; Option)
         {
             DataClassification = ToBeClassified;
-            OptionMembers = Average,All;
-            OptionCaption = 'Average,All';
+            OptionMembers = All;
+            OptionCaption = 'All';
         }
     }
 

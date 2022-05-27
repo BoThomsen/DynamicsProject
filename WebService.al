@@ -10,13 +10,17 @@ codeunit 50102 WebService
 
     trigger OnRun()
     begin
-        client.DefaultRequestHeaders.Add('User-Agent', 'Dynamics 365');
-        client.DefaultRequestHeaders.Add('Authorization', CreateAuth());
+        if not (Client.DefaultRequestHeaders.Contains('User-Agent') and
+            Client.DefaultRequestHeaders.Contains('Authorization')
+        ) then begin
+            Client.DefaultRequestHeaders.Add('User-Agent', 'Dynamics 365');
+            Client.DefaultRequestHeaders.Add('Authorization', CreateAuth());
+        end;
 
     end;
 
 
-        procedure NewItem(Item: Record Item) JsonPayload: JsonObject
+    procedure NewItem(Item: Record Item) JsonPayload: JsonObject
     var
         Response: HttpResponseMessage;
         Request: HttpRequestMessage;
@@ -35,7 +39,6 @@ codeunit 50102 WebService
         Payload: Text;
         Uri: Text;
     begin
-        // proof of concept, edit name
         JsonPayload.Add('name', Item.Description);
         JsonPayload.Add('regular_price', Format(Item."Unit Price"));
         JsonPayload.WriteTo(Payload);

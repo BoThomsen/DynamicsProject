@@ -10,6 +10,18 @@ pageextension 50104 ItemCardExt extends "Item Card"
                 ApplicationArea = All;
                 Editable = false;
             }
+
+
+        }
+
+        addafter(Inventory)
+        {
+                field(OnlineOrPhysical; Rec.OnlineOrPhysical)
+            {
+                Caption = ' Online/Physical';
+                ApplicationArea = All;
+                
+            }
         }
     }
 
