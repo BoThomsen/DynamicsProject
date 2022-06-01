@@ -8,7 +8,6 @@ codeunit 50117 "MostSoldProductsChartUnit"
 
     var
         MostSoldProChartSetup: Record "Product Chart Setup Table";
-
     procedure GenerateData(var BusinessChartBuffer: Record "Business Chart Buffer")
     var
         Item: Record Item;
@@ -27,8 +26,8 @@ codeunit 50117 "MostSoldProductsChartUnit"
 
             SetXAxis('Product', "Data Type"::String);
             
-            
             Item.SetRange(WooComId, 1, 10000);
+        
            // Item.SetRange(Item."Date Filter", Today - 7 , Today);
             if Item.FindSet() then begin  
                 Item.SetCurrentKey("Qty. on Sales Order");

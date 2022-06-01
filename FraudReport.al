@@ -41,7 +41,6 @@ codeunit 50132 FraudReport
         FraudFile: File;
         Index : Integer;
         Customer: Record Customer;
-
         FraudOutStream : OutStream;
 
         

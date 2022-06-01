@@ -1,11 +1,5 @@
-pageextension 50110 WooComExt extends "Order Processor Role Center"
+pageextension 50110 RoleCenterExt extends "Order Processor Role Center"
 {
-    layout
-    {
-        // Add changes to page layout here
-    }
-
-    
 
     actions
     {
@@ -30,6 +24,4 @@ pageextension 50110 WooComExt extends "Order Processor Role Center"
 
     }
 
-    var
-        myInt: Integer;
 }

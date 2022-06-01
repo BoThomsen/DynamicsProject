@@ -19,7 +19,7 @@ page 50112 BestSellerPage
 
                     trigger ControlAddInReady(callbackUrl: Text)
                     begin
-                        CurrPage.AmazonBestSeller.Navigate('https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_nav_0&output=embed');
+                        CurrPage.AmazonBestSeller.Navigate('https://tv2.dk/');
                     end;
 
                 }

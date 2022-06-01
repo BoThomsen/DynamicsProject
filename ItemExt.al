@@ -27,8 +27,6 @@ tableextension 50103 ItemExt extends Item
         ResJson.Get('id', JsonTokenWooComId);
         Rec.WooComId := JsonTokenWooComId.AsValue().AsInteger();
 
-        //FraudReport.Run();
-
 
     end;
 

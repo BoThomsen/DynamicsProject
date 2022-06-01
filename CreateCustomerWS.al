@@ -21,7 +21,6 @@ codeunit 50131 CreateCustomerWooCom
         Customer."Customer Posting Group" := 'EU';
         Customer."Payment Terms Code" := 'COD';
 
-        //     SendWelcomeMail.SendWelcomeMail(firstName, customerEmail); //Husk at skifte ud til email!
 
         if Customer.Insert() then begin
             result := 'Inserted';
